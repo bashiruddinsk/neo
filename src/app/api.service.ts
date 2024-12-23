@@ -13,9 +13,13 @@ export class ApiService {
   constructor(private http: HttpClient,private sharedService:SharedService) {}
 
   // Fetch data from the API
-  getCardLimit(): Observable<void> {
-    return this.http.get<void>(`${this.apiUrl}/getLimit`);
-  }
+  getCardLimit(phoneNumber: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getLimit?phoneNumber=${phoneNumber}`);
+}
+
+getCreditCardDetails(phoneNumber: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/getCreditCardDetails?phoneNumber=${phoneNumber}`);
+}
 
   validateUser(cardHolder:any):Observable<any>{
 

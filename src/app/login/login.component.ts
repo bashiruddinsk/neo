@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { phoneNumber, password } = this.loginForm.value;
       console.log('phoneNumber:', phoneNumber, 'Password:', password);
-  
+      this.sharedService.setData(this.loginForm.value.phoneNumber,this.loginForm.value.password);
+   
       this.apiService.validateUser(this.loginForm.value).subscribe({
         next: (isValid: boolean) => {
           console.log('Validation response:', isValid);

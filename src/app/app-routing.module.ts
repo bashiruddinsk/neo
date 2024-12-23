@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { CardHolderDetailsComponent } from './card-holder-details/card-holder-details.component';
 
 const routes: Routes = [
   {path:'', component:LoginComponent},
   {path:'login', component:LoginComponent},
-  {path:'home',component:HomeComponent}
+  {path:'home',component:HomeComponent},
+  { path: 'card-details', component: CardDetailsComponent },
+  { path: 'transactions', component: TransactionComponent },
+  { path: 'card-holder-details', component: CardHolderDetailsComponent }
 ];
 
 @NgModule({

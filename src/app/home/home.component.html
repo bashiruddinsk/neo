@@ -1,3 +1,30 @@
-<div>
-        <button (click)="checkCardLimit()">check Limit</button>
-</div>
+<div class="button-container">
+     
+        <button class="action-button" routerLink="/transactions">Check Transactions</button>
+        <button class="action-button" (click)="checkCardLimit()" >check Card Limit</button>
+        <button class="action-button" (click)="fetchCreditCardDetails()">Credit Card Details</button>
+      </div>
+
+
+      <div *ngIf="showModal" class="modal">
+        <div class="modal-content">
+            <h3>Credit Card Details</h3>
+            <div *ngIf="creditCardDetails">
+                <p><strong>Card Number:</strong> {{ creditCardDetails.cardNumber }}</p>
+                <p><strong>cvv:</strong> {{ creditCardDetails.cvv }}</p>
+                <p><strong>Expiry Date:</strong> {{ creditCardDetails.expDate}}</p>
+                <p><strong>phone number:</strong> {{ creditCardDetails.phoneNumber }}</p>
+                <p><strong>amount limit:</strong> {{ creditCardDetails.amountLimit }}</p>
+            </div>
+            <div *ngIf="!creditCardDetails">
+                <p>No details available.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="close-button" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+    
+
+     
+      
