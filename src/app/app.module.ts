@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CardDetailsComponent } from './card-details/card-details.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { CardHolderDetailsComponent } from './card-holder-details/card-holder-details.component';
 
@@ -17,7 +16,6 @@ import { CardHolderDetailsComponent } from './card-holder-details/card-holder-de
     AppComponent,
     LoginComponent,
     HomeComponent,
-    CardDetailsComponent,
     TransactionComponent,
     TransactionComponent,
     CardHolderDetailsComponent

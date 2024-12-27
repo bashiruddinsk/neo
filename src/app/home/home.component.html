@@ -1,30 +1,84 @@
 <div class="button-container">
-     
-        <button class="action-button" routerLink="/transactions">Check Transactions</button>
-        <button class="action-button" (click)="checkCardLimit()" >check Card Limit</button>
-        <button class="action-button" (click)="fetchCreditCardDetails()">Credit Card Details</button>
+    <button class="action-button" (click)="fetchCreditCardDetails()">Credit Card Details</button>
+    <button class="action-button" (click)="makeTransaction()">Make Transaction</button>
+    <button class="action-button" (click)="fetchTransactions()">Fetch Transactions</button>
+  </div>
+  
+  <!-- Modal for Credit Card Details -->
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <h3>Credit Card Details</h3>
+      <div *ngIf="creditCardDetails">
+        <p><strong>Card Number:</strong> {{ creditCardDetails.cardNumber }}</p>
+        <p><strong>CVV:</strong> {{ creditCardDetails.cvv }}</p>
+        <p><strong>Expiry Date:</strong> {{ creditCardDetails.expDate }}</p>
+        <p><strong>Phone Number:</strong> {{ creditCardDetails.phoneNumber }}</p>
+        <p><strong>Available Balance:</strong> {{ creditCardDetails.amountLimit }}</p>
+        <p><strong>Card Limit:</strong> {{ creditCardDetails.cardLimit }}</p>
       </div>
-
-
-      <div *ngIf="showModal" class="modal">
-        <div class="modal-content">
-            <h3>Credit Card Details</h3>
-            <div *ngIf="creditCardDetails">
-                <p><strong>Card Number:</strong> {{ creditCardDetails.cardNumber }}</p>
-                <p><strong>cvv:</strong> {{ creditCardDetails.cvv }}</p>
-                <p><strong>Expiry Date:</strong> {{ creditCardDetails.expDate}}</p>
-                <p><strong>phone number:</strong> {{ creditCardDetails.phoneNumber }}</p>
-                <p><strong>amount limit:</strong> {{ creditCardDetails.amountLimit }}</p>
-            </div>
-            <div *ngIf="!creditCardDetails">
-                <p>No details available.</p>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="close-button" (click)="closeModal()">Close</button>
-        </div>
+      <div *ngIf="!creditCardDetails">
+        <p>No details available.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="close-button" (click)="closeModal()">Close</button>
+      </div>
     </div>
-    
-
-     
-      
+  </div>
+  
+  <!-- Transaction Form -->
+  <div *ngIf="showTransactionForm" class="transaction-form">
+    <h3>Make Transaction</h3>
+    <form [formGroup]="transactionForm" (ngSubmit)="submitTransaction()">
+      <div>
+        <label>
+          <input type="radio" autofocus formControlName="transactionType" value="repay" (change)="selectTransactionType('repay')"> Repay Bill
+        </label>
+        <label>
+          <input type="radio" formControlName="transactionType" value="withdraw" (change)="selectTransactionType('withdraw')"> Withdraw Amount
+        </label>
+      </div>
+      <div *ngIf="transactionForm.value.transactionType === 'withdraw'">
+        <label>Card Number: <input type="text" formControlName="cardNumber"></label>
+        <label>CVV: <input type="text" formControlName="cvv"></label>
+        <label>Expiry Date: <input type="text" formControlName="expiryDate"></label>
+      </div>
+      <div>
+        <label>Amount: <input type="number" formControlName="amount"></label>
+        <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+          <p class="error-message">Amount is required and must be greater than 0.</p>
+        </div>
+      </div>
+      <div class="form-buttons">
+        <button type="submit" [disabled]="transactionForm.invalid">Submit</button>
+        <button type="button" (click)="closeTransactionForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
+ <!-- Display Transactions -->
+<div *ngIf="showTransactions" class="transaction-history">
+    <h3>Transaction History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>phoneNumber</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions.slice().reverse()">
+          <td>{{ transaction.transactionId }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.transactionType }}</td>
+          <td>{{ transaction.transactionDate}}</td>
+          <td>{{ transaction.phoneNumber}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="modal-footer">
+        <button class="close-button" (click)="closeTransactionHistory()">Close</button>
+      </div>
+  </div>

@@ -1,3 +1,27 @@
+/* General button styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin: 20px 0;
+}
+
+.action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Blue color for buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Modal styling */
 .modal {
     display: flex;
     justify-content: center;
@@ -7,18 +31,34 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     z-index: 1000;
 }
 
 .modal-content {
-    background: white;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    text-align: left;
-    width: 50%;
+    border-radius: 10px;
+    width: 90%;
     max-width: 500px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.modal-content strong {
+    color: #333;
 }
 
 .modal-footer {
@@ -27,10 +67,132 @@
 }
 
 .close-button {
-    background: #ff4d4d;
-    color: white;
-    border: none;
     padding: 10px 20px;
-    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    background-color: #dc3545; /* Red color for close button */
+    border: none;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Transaction Form styling */
+.transaction-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.transaction-form h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.transaction-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.transaction-form input[type="text"],
+.transaction-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.transaction-form .form-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.transaction-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.transaction-form button:hover {
+    background-color: #0056b3;
+}
+
+.transaction-form button[type="button"] {
+    background-color: #6c757d;
+}
+
+.transaction-form button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Transaction History Table styling */
+.transaction-history {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    border-collapse: collapse;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.transaction-history h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.transaction-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.transaction-history th,
+.transaction-history td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.transaction-history th {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+}
+
+.transaction-history tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.transaction-history tr:hover {
+    background-color: #ddd;
+}
+
+.transaction-history td {
+    font-size: 16px;
+    color: #333;
+}
+
+.transaction-history .error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
 }

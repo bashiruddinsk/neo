@@ -12,10 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient,private sharedService:SharedService) {}
 
-  // Fetch data from the API
-  getCardLimit(phoneNumber: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/getLimit?phoneNumber=${phoneNumber}`);
-}
+  
 
 getCreditCardDetails(phoneNumber: number): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/getCreditCardDetails?phoneNumber=${phoneNumber}`);
@@ -31,6 +28,15 @@ getCreditCardDetails(phoneNumber: number): Observable<any> {
 
     return this.http.post<any>(`${this.apiUrl}/validate`,cardHolderDetails);
 
+  }
+
+
+  getTransactionsByPhoneNumber(phoneNumber: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/transactions/${phoneNumber}`);
+  }
+
+  makeTransaction(transactionData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/transactions`, transactionData);
   }
 
 }
